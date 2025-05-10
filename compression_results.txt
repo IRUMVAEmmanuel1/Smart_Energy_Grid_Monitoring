@@ -1,0 +1,20 @@
+   hypertable_name    | size_before_compression 
+----------------------+-------------------------
+ energy_readings      | 1104 kB
+ energy_readings_3h   | 1136 kB
+ energy_readings_week | 1104 kB
+(3 rows)
+
+                                                                                               QUERY PLAN                                                                                                
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+ Limit  (cost=97.39..97.42 rows=10 width=16) (actual time=1.551..1.553 rows=2 loops=1)
+   ->  Sort  (cost=97.39..97.43 rows=14 width=16) (actual time=1.550..1.551 rows=2 loops=1)
+         Sort Key: (avg(energy_readings.power)) DESC
+         Sort Method: quicksort  Memory: 25kB
+         ->  Finalize HashAggregate  (cost=96.92..97.13 rows=14 width=16) (actual time=1.502..1.503 rows=2 loops=1)
+               Group Key: (time_bucket('00:15:00'::interval, energy_readings."timestamp"))
+               Batches: 1  Memory Usage: 24kB
+               ->  Custom Scan (ChunkAppend) on energy_readings  (cost=0.00..96.78 rows=28 width=40) (actual time=1.477..1.499 rows=2 loops=1)
+                     Chunks excluded during startup: 0
+                     ->  Partial HashAggregate  (cost=95.02..95.19 rows=14 width=40) (actual time=1.476..1.477 rows=2 loops=1)
+                           Group Key: time_bucket('00:15:00'::interval, _hyper_4--More-- 

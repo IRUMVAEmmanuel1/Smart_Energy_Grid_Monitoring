@@ -1,0 +1,25 @@
+psql:/continuous_aggregation_setup.sql:10: ERROR:  continuous aggregate "energy_readings_15min" already exists
+HINT:  Drop or rename the existing continuous aggregate first or use another name.
+psql:/continuous_aggregation_setup.sql:21: ERROR:  continuous aggregate "energy_readings_hourly" already exists
+HINT:  Drop or rename the existing continuous aggregate first or use another name.
+psql:/continuous_aggregation_setup.sql:32: ERROR:  continuous aggregate "energy_readings_daily" already exists
+HINT:  Drop or rename the existing continuous aggregate first or use another name.
+psql:/continuous_aggregation_setup.sql:38: ERROR:  continuous aggregate policy already exists for "energy_readings_15min"
+DETAIL:  Only one continuous aggregate policy can be created per continuous aggregate and a policy with job id 1000 already exists for "energy_readings_15min".
+psql:/continuous_aggregation_setup.sql:43: ERROR:  continuous aggregate policy already exists for "energy_readings_hourly"
+DETAIL:  Only one continuous aggregate policy can be created per continuous aggregate and a policy with job id 1001 already exists for "energy_readings_hourly".
+psql:/continuous_aggregation_setup.sql:48: ERROR:  continuous aggregate policy already exists for "energy_readings_daily"
+DETAIL:  Only one continuous aggregate policy can be created per continuous aggregate and a policy with job id 1002 already exists for "energy_readings_daily".
+                                                                      QUERY PLAN                                                                      
+------------------------------------------------------------------------------------------------------------------------------------------------------
+ GroupAggregate  (cost=82.93..83.05 rows=5 width=27) (actual time=0.333..0.336 rows=2 loops=1)
+   Group Key: (time_bucket('00:15:00'::interval, energy_readings."timestamp")), energy_readings.meter_id
+   InitPlan 1 (returns $0)
+     ->  Limit  (cost=0.00..0.03 rows=1 width=11) (actual time=0.011..0.012 rows=1 loops=1)
+           ->  Append  (cost=0.00..171.72 rows=6448 width=11) (actual time=0.010..0.011 rows=1 loops=1)
+                 ->  Seq Scan on _hyper_4_1_chunk _hyper_4_1_chunk_1  (cost=0.00..52.37 rows=2437 width=11) (actual time=0.010..0.010 rows=1 loops=1)
+                 ->  Seq Scan on _hyper_4_2_chunk  (cost=0.00..40.75 rows=1875 width=11) (never executed)
+                 ->  Seq Scan on _hyper_4_3_chunk  (cost=0.00..46.36 rows=2136 width=11) (never executed)
+   ->  Sort  (cost=82.90..82.92 rows=5 width=27) (actual time=0.326..0.326 rows=5 loops=1)
+         Sort Key: (time_bucket('00:15:00'::interval, energy_readings."timestamp"))
+--More-- 

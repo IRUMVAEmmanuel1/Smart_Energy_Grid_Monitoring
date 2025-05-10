@@ -1,0 +1,12 @@
+   hypertable_name    |     chunk_schema      |    chunk_name     |      range_start       |       range_end        | chunk_size 
+----------------------+-----------------------+-------------------+------------------------+------------------------+------------
+ energy_readings      | _timescaledb_internal | _hyper_4_2_chunk  | 2025-04-26 00:00:00+00 | 2025-04-27 00:00:00+00 | 328 kB
+ energy_readings      | _timescaledb_internal | _hyper_4_3_chunk  | 2025-05-03 00:00:00+00 | 2025-05-04 00:00:00+00 | 360 kB
+ energy_readings      | _timescaledb_internal | _hyper_4_1_chunk  | 2025-05-10 00:00:00+00 | 2025-05-11 00:00:00+00 | 400 kB
+ energy_readings_3h   | _timescaledb_internal | _hyper_5_8_chunk  | 2025-04-26 18:00:00+00 | 2025-04-26 21:00:00+00 | 328 kB
+ energy_readings_3h   | _timescaledb_internal | _hyper_5_9_chunk  | 2025-05-03 06:00:00+00 | 2025-05-03 09:00:00+00 | 224 kB
+ energy_readings_3h   | _timescaledb_internal | _hyper_5_10_chunk | 2025-05-03 09:00:00+00 | 2025-05-03 12:00:00+00 | 168 kB
+ energy_readings_3h   | _timescaledb_internal | _hyper_5_7_chunk  | 2025-05-10 18:00:00+00 | 2025-05-10 21:00:00+00 | 400 kB
+ energy_readings_week | _timescaledb_internal | _hyper_7_12_chunk | 2025-04-24 00:00:00+00 | 2025-05-01 00:00:00+00 | 328 kB
+ energy_readings_week | _timescaledb_internal | _hyper_7_13_chunk | 2025-05-01 00:00:00+00 | 2025-05-08 00:00:00+00 | 360 kB
+ energy_readings_week | _timescaledb_internal | _hyper_7_11_chunk | 2025-05-08 0--More-- 

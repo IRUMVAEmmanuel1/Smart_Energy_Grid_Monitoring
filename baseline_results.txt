@@ -1,0 +1,15 @@
+                                                                QUERY PLAN                                                                
+------------------------------------------------------------------------------------------------------------------------------------------
+ Sort  (cost=92.95..92.99 rows=14 width=16) (actual time=1.749..1.750 rows=1 loops=1)
+   Sort Key: (time_bucket('01:00:00'::interval, energy_readings."timestamp"))
+   Sort Method: quicksort  Memory: 25kB
+   ->  Finalize HashAggregate  (cost=92.48..92.69 rows=14 width=16) (actual time=1.701..1.701 rows=1 loops=1)
+         Group Key: (time_bucket('01:00:00'::interval, energy_readings."timestamp"))
+         Batches: 1  Memory Usage: 24kB
+         ->  Custom Scan (ChunkAppend) on energy_readings  (cost=0.28..92.27 rows=42 width=40) (actual time=1.695..1.697 rows=1 loops=1)
+               Chunks excluded during startup: 2
+               ->  Partial HashAggregate  (cost=88.93..89.10 rows=14 width=40) (actual time=1.695..1.695 rows=1 loops=1)
+                     Group Key: time_bucket('01:00:00'::interval, _hyper_4_1_chunk."timestamp")
+                     Batches: 1  Memory Usage: 24kB
+                     ->  Seq Scan on _hyper_4_1_chunk  (cost=0.00..76.74 rows=2437 width=16) (actual time=0.013..1.030 rows=2437 loops=1)
+--More-- 
