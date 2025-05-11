@@ -1,0 +1,12 @@
+                                                                                                QUERY PLAN                                                                                                
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+ Custom Scan (ChunkAppend) on energy_readings  (cost=0.12..17.30 rows=260000 width=27) (actual time=0.466..0.468 rows=0 loops=1)
+   Order: energy_readings."timestamp" DESC
+   Chunks excluded during startup: 0
+   Hypertables excluded during runtime: 0
+   InitPlan 1 (returns $0)
+     ->  Limit  (cost=0.05..0.05 rows=1 width=11) (actual time=0.272..0.274 rows=1 loops=1)
+           ->  Append  (cost=0.05..3937.80 rows=780000 width=11) (actual time=0.271..0.272 rows=1 loops=1)
+                 ->  Custom Scan (DecompressChunk) on _hyper_4_1_chunk _hyper_4_1_chunk_1  (cost=0.05..12.60 rows=260000 width=11) (actual time=0.270..0.271 rows=1 loops=1)
+                       ->  Seq Scan on compress_hyper_11_20_chunk compress_hyper_11_20_chunk_1  (cost=0.00..12.60 rows=260 width=36) (actual time=0.005..0.005 rows=1 loops=1)
+                 ->  Custom Scan (DecompressChunk) on _hyper_4_2_chunk  (cost=0.--More-- 
