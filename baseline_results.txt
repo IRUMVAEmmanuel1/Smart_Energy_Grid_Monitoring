@@ -13,3 +13,4 @@
                      Batches: 1  Memory Usage: 24kB
                      ->  Seq Scan on _hyper_4_1_chunk  (cost=0.00..76.74 rows=2437 width=16) (actual time=0.013..1.030 rows=2437 loops=1)
 --More-- 
+ 
